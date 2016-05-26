@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="purchaseApp">
+    <head>
+        <title>Angular test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    </head>
+    <body ng-controller="purchaseController">
+        <div class="page-header">
+            <h1>List of purchases</h1>
+        </div>
+        <div class="panel">
+            <div class="form-inline">
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <input class="form-control" ng-model="text" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <input type="number" class="form-control" ng-model="price" placeHolder="Price"> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <button class="btn btn-default" ng-click="addItem(text, price)">Add</button>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Purchased</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in list.items">
+                        <td>{{item.purchase}}</td>
+                        <td>{{item.price}}</td>
+                        <td>
+                            <input type="checkbox" ng-model="item.done">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+        <script>
+            var model = {
+                items: [
+                    {purchase: "Brad", price: 5.50, done: false},
+                    {purchase: "Meat", price: 10.25, done: false},
+                    {purchase: "Beer", price: 8, done: true},
+                    {purchase: "Juice", price: 9.50, done: false}
+                ]
+            }
+            
+            var purchaseApp = angular.module("purchaseApp", []);
+            purchaseApp.controller("purchaseController", function($scope) {
+               $scope.list = model;
+               $scope.addItem = function(text, price) {
+                   price = parseFloat(price);
+                   if (text != "" && !isNaN(price)) {
+                       $scope.list.items.push({purchase: text, price: price, done: false});
+                   }
+               }
+            });
+        </script>
+    </body>
+</html>
