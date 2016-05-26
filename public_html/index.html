@@ -70,6 +70,8 @@ and open the template in the editor.
                    price = parseFloat(price);
                    if (text != "" && !isNaN(price)) {
                        $scope.list.items.push({purchase: text, price: price, done: false});
+                       $scope.text = "";
+                       $scope.price = "";
                    }
                }
             });
