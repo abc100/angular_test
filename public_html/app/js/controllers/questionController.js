@@ -1,5 +1,8 @@
 var myApp = angular.module("myApp");
 myApp.controller("questionController", function($scope) {
+    
+    $scope.sortparam = '-rate';
+    
     $scope.question = {
         text: 'What framework is better to use?',
         author: 'Vasya',
