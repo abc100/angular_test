@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="questApp">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    </head>
+    <body ng-controller="questionController2">
+        
+        <b>{{question.text}}</b>
+        <p>{{question.author}}</p>
+        <p><i>{{question.date}}</i></p>
+        
+        <h3>Answers</h3>
+
+        <div ng-repeat="answer in question.answers">
+            
+            <div>
+                <a href="" ng-click="voteUp(answer)">Vote Up</a>
+                <span>{{answer.rate}}</span>
+                <a href="" ng-click="voteDown(answer)">Vote Down</a>
+            </div>
+
+            <b>{{answer.text | formatText}}</b>
+            <p>{{answer.author}}</p>
+            <p><i>{{answer.date}}</i></p>
+        </div>
+        
+        <script src="js/lib/angular.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers/questionController2.js"></script>
+        <script src="js/filters/filter.js"></script>
+    </body>
+</html>
