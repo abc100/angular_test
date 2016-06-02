@@ -11,7 +11,7 @@
             <h3>{{question.text}}</h3>
             <p>{{question.author}}</p>
             <p><i>{{question.date}}</i></p>
-        </div>
+        </div> 
         <div class="answers">
             <div ng-repeat="answer in question.answers | orderBy:sortparam | limitTo:5" class="answer">
                 <a href="" ng-click="voteUp(answer)">Vote up</a>
@@ -39,11 +39,18 @@
             <p>{{ans.author}}</p>
             <p><i>{{ans.date}}</i></p>
         </div>
-        
+       
         <script src="js/lib/angular.min.js"></script>
         <script>
             var myApp = angular.module("myApp", []);
         </script>
+        <script src="js/dataService.js"></script>
         <script src="js/controllers/questionController.js"></script>
+        <script>
+            var quest = angular.element(document.querySelector('.quest'));
+            var questHeader = quest.find('h3');
+            questHeader.css('color', 'blue');
+            questHeader.addClass('header');
+        </script>
     </body>
 </html>

@@ -6,30 +6,51 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
     </head>
-    <body ng-controller="questionController2">
+    <body ng-controller="questionController3">
         
-        <b>{{question.text}}</b>
-        <p>{{question.author}}</p>
-        <p><i>{{question.date}}</i></p>
-        
-        <h3>Answers</h3>
+        <button ng-click="load()">Load content</button>
+        <div class="content" ng-if="loaded">
+            <b>{{question.text}}</b>
+            <p>{{question.author}}</p>
+            <p><i>{{question.date}}</i></p>
 
-        <div ng-repeat="answer in question.answers">
-            
-            <div>
-                <a href="" ng-click="voteUp(answer)">Vote Up</a>
-                <span>{{answer.rate}}</span>
-                <a href="" ng-click="voteDown(answer)">Vote Down</a>
+            <h3>Answers</h3>
+
+            <div ng-repeat="answer in question.answers">
+                <div>
+                    <a href="" ng-click="voteUp(answer)">Vote Up</a>
+                    <span>{{answer.rate}}</span>
+                    <a href="" ng-click="voteDown(answer)">Vote Down</a>
+                </div>
+
+                <b>{{answer.text | formatText}}</b>
+                <p>{{answer.author}}</p>
+                <p><i>{{answer.date}}</i></p>
             </div>
-
-            <b>{{answer.text | formatText}}</b>
-            <p>{{answer.author}}</p>
-            <p><i>{{answer.date}}</i></p>
+        </div>
+        
+        <div ng-controller="answerController">
+            <form name="answerForm">
+                <fieldset>
+                    <p><label for="answerText">Answer text:</label></p>
+                    <input id="answerText" ng-model="answer.text" required placeholder="Enter your answer..">
+                    <p><label for="answerAuthor">Author:</label></p>
+                    <input id="answerAuthor" ng-model="answer.author" required placeholder="Enter the author name..">
+                    <p><label for="answerDate">Date:</label></p>
+                    <input id="answerDate" ng-model="answer.date" ng-pattern="/\d\d/\d\d/\d\d\d\d/" required placeholder="Enter the date..">
+                </fieldset>
+                <button type="submit" ng-click="save(answer, answerForm)">Save</button>
+            </form>
+            
+            <div>Answer:</div>
+            <p ng-bind="resp.text"></p>
+            <p ng-bind="resp.author"></p>
         </div>
         
         <script src="js/lib/angular.min.js"></script>
         <script src="js/app.js"></script>
-        <script src="js/controllers/questionController2.js"></script>
+        <script src="js/controllers/questionController3.js"></script>
+        <script src="js/controllers/answerController.js"></script>
         <script src="js/filters/filter.js"></script>
     </body>
 </html>

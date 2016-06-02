@@ -1,0 +1,41 @@
+<!--<div>
+    <div class="quest">
+        <h3>{{question.text}}</h3>
+        <p>{{question.author}}</p>
+        <p><i>{{question.date}}</i></p>
+    </div>
+    <h3>Answers</h3>
+    <div ng-repeat="answer in question.answers">
+        
+        <div class="vote">
+            <a ng-click="voteUp(answer)">Vote Up</a>
+            <span>{{answer.rate}}</span>
+            <a ng-click="voteDown(answer)">Vote Down</a>
+        </div>
+        
+        <b>{{answer.text}}</b>
+        <p>{{answer.author}}</p>
+        <p><i>{{answer.date}}</i></p>
+    </div>
+</div>-->
+
+<button ng-click="load()">Load content</button>
+<div class="content" ng-if="loaded">
+    <b>{{question.text}}</b>
+    <p>{{question.author}}</p>
+    <p><i>{{question.date}}</i></p>
+
+    <h3>Answers</h3>
+
+    <div ng-repeat="answer in question.answers">
+        <div>
+            <a href="" ng-click="voteUp(answer)">Vote Up</a>
+            <span>{{answer.rate}}</span>
+            <a href="" ng-click="voteDown(answer)">Vote Down</a>
+        </div>
+
+        <b>{{answer.text | formatText}}</b>
+        <p>{{answer.author}}</p>
+        <p><i>{{answer.date}}</i></p>
+    </div>
+</div>
